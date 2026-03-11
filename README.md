@@ -9,13 +9,13 @@ A Core Java based Hotel Booking Management System developed to demonstrate real-
 1. Open terminal in the project folder
 2. Compile the program:
 
-   javac UseCase2RoomInitialization.java
+   javac RoomInventory.java UseCase3InventorySetup.java
 
 3. Run the program:
 
-   java UseCase2RoomInitialization
+   java UseCase3InventorySetup
 
-4. The application displays room types and their availability on the console.
+4. The application displays centralized room inventory information on the console.
 
 ---
 
@@ -23,72 +23,75 @@ A Core Java based Hotel Booking Management System developed to demonstrate real-
 
 The project is developed incrementally through structured use cases.
 
-**Flow of Use Case 2:**
+**Flow of Use Case 3:**
 
-User runs application  
+System starts  
 ↓  
-Room objects are created  
+Inventory component is initialized  
 ↓  
-Availability values stored in variables  
+Room availability stored in centralized HashMap  
 ↓  
-Room details printed to console  
+Availability retrieved through inventory methods  
+↓  
+Inventory updates performed in controlled manner  
+↓  
+Updated inventory displayed  
 ↓  
 Application terminates safely
 
-Each use case gradually adds new system features and improves design.
+Each use case gradually improves system design, scalability, and maintainability.
 
 ---
 
 ## Objective
 
-- To introduce object-oriented domain modeling
-- To demonstrate abstraction and inheritance using real-world examples
-- To understand polymorphism through uniform object handling
-- To separate domain representation from system state
-- To prepare the system for future inventory management enhancements
+- To replace scattered availability variables with centralized inventory management
+- To demonstrate how HashMap solves real-world state management problems
+- To ensure inventory consistency using a single source of truth
+- To encapsulate inventory operations within a dedicated component
+- To design a scalable system for future room types and booking features
 
 ---
 
 ## Topics Covered
 
-- Abstract classes
-- Inheritance
-- Polymorphism
+- HashMap data structure
+- Key-value mapping
+- Constant-time lookup (O(1))
 - Encapsulation
-- Constructors
-- Method invocation
-- Console output
-- Static state management
-- Object-oriented design principles
-- Modular application structure
+- Separation of concerns
+- Centralized state management
+- Constructor-based initialization
+- Controlled state updates
+- Modular class design
+- Inventory abstraction principles
 
 ---
 
 ## Use Case Included
 
-### Use Case 2: Basic Room Types and Static Availability
+### Use Case 3: Centralized Room Inventory Management
 
 This use case demonstrates:
 
-- Creating a generalized Room abstraction
-- Extending room types using inheritance
-- Representing Single, Double, and Suite rooms
-- Using polymorphism for uniform object handling
-- Storing availability using simple variables
-- Displaying room details and availability information
+- Creating a dedicated RoomInventory class
+- Centralizing availability data using HashMap
+- Managing availability through controlled methods
+- Eliminating inconsistent scattered variables
+- Providing a scalable design for future expansion
 
-This use case establishes the foundation for structured inventory management in future versions.
+This use case establishes a reliable inventory foundation required for booking and search features.
 
 ---
 
 ## Version Information
 
-Application Version: 2.0  
-This version introduces domain modeling and object hierarchy.
+Application Version: 3.1  
+This version is a refactored implementation of inventory management.
 
 ---
 
 ## Limitations of Previous Use Case
 
-Use Case 1 focused only on application startup and execution flow.  
-No domain modeling or business logic was introduced, limiting system realism.
+Use Case 2 stored availability in independent variables.  
+This approach does not scale and increases the risk of inconsistent system state as system complexity grows.
