@@ -1,97 +1,137 @@
-# BookMyStayApp
+# Book My Stay App
 
-A Core Java based Hotel Booking Management System developed to demonstrate real-world application of object-oriented programming and data structures through incremental use cases.
+## Use Case 4: Room Search & Availability Check
 
----
+This use case introduces the ability for guests to search and view available rooms without modifying the system state. The goal is to provide a safe and controlled way to retrieve information from the system while maintaining a clear separation between read-only operations and inventory updates.
 
-## Running Procedure
-
-1. Open terminal in the project folder
-2. Compile the program:
-
-   javac RoomInventory.java UseCase3InventorySetup.java
-
-3. Run the program:
-
-   java UseCase3InventorySetup
-
-4. The application displays centralized room inventory information on the console.
+The search functionality retrieves room availability from the centralized inventory and displays only those room types that currently have available rooms.
 
 ---
 
-## Flow of Project
+## Goal
 
-The project is developed incrementally through structured use cases.
-
-**Flow of Use Case 3:**
-
-System starts  
-↓  
-Inventory component is initialized  
-↓  
-Room availability stored in centralized HashMap  
-↓  
-Availability retrieved through inventory methods  
-↓  
-Inventory updates performed in controlled manner  
-↓  
-Updated inventory displayed  
-↓  
-Application terminates safely
-
-Each use case gradually improves system design, scalability, and maintainability.
+Enable guests to view available rooms and their details without modifying the system state. This reinforces safe data access and separation of responsibilities.
 
 ---
 
-## Objective
+## Actors
 
-- To replace scattered availability variables with centralized inventory management
-- To demonstrate how HashMap solves real-world state management problems
-- To ensure inventory consistency using a single source of truth
-- To encapsulate inventory operations within a dedicated component
-- To design a scalable system for future room types and booking features
+Guest
+Initiates a room search to view available room options.
 
----
-
-## Topics Covered
-
-- HashMap data structure
-- Key-value mapping
-- Constant-time lookup (O(1))
-- Encapsulation
-- Separation of concerns
-- Centralized state management
-- Constructor-based initialization
-- Controlled state updates
-- Modular class design
-- Inventory abstraction principles
+Search Service
+Handles read-only access to inventory and room information.
 
 ---
 
-## Use Case Included
+## Flow of Execution
 
-### Use Case 3: Centralized Room Inventory Management
-
-This use case demonstrates:
-
-- Creating a dedicated RoomInventory class
-- Centralizing availability data using HashMap
-- Managing availability through controlled methods
-- Eliminating inconsistent scattered variables
-- Providing a scalable design for future expansion
-
-This use case establishes a reliable inventory foundation required for booking and search features.
+1. The guest initiates a room search request.
+2. The system retrieves availability data from the centralized inventory.
+3. Room details and pricing are obtained from room objects.
+4. Room types with zero availability are filtered out.
+5. Available rooms and their details are displayed.
+6. The system state remains unchanged.
 
 ---
 
-## Version Information
+## Key Java Concepts Used
 
-Application Version: 3.1  
-This version is a refactored implementation of inventory management.
+### Read-Only Access
+
+Search operations only read data from the inventory. No updates are performed during search operations, ensuring system stability.
 
 ---
 
-## Limitations of Previous Use Case
+### Defensive Programming
 
-Use Case 2 stored availability in independent variables.  
-This approach does not scale and increases the risk of inconsistent system state as system complexity grows.
+The search logic verifies that only room types with availability greater than zero are displayed.
+
+---
+
+### Separation of Concerns
+
+Search functionality is separated from inventory updates and booking logic. Searching only retrieves information and does not affect system state.
+
+---
+
+### Inventory as State Holder
+
+The inventory component stores the current availability of rooms and provides access to that data.
+
+---
+
+### Domain Model Usage
+
+Room objects contain descriptive information such as room type, number of beds, and pricing. This prevents duplication of room data across system components.
+
+---
+
+### Validation Logic
+
+Room types with zero availability are filtered out so guests only see rooms that can actually be booked.
+
+---
+
+## Key Requirements
+
+* Retrieve room availability from the centralized inventory
+* Display only room types with availability greater than zero
+* Show room details and pricing using room objects
+* Ensure inventory data is not modified during search operations
+* Maintain a clear boundary between search and booking logic
+
+---
+
+## How to Compile and Run
+
+Compile the program:
+
+```bash
+javac UseCase4RoomSearch.java
+```
+
+Run the program:
+
+```bash
+java UseCase4RoomSearch
+```
+
+---
+
+## Example Output
+
+```
+Book My Stay - Hotel Booking System v4.1
+
+Available Rooms:
+
+Room Type: Single Room
+Beds: 1
+Price per night: $100.0
+Available: 10
+--------------------------
+
+Room Type: Double Room
+Beds: 2
+Price per night: $180.0
+Available: 5
+--------------------------
+
+Search completed. No inventory changes were made.
+```
+
+---
+
+## Key Benefits
+
+* Guests can view accurate room availability
+* Inventory state remains protected from accidental modification
+* Clear separation between read-only and write operations
+* Improves system reliability and maintainability
+
+---
+
+## Drawbacks of Previous Use Case
+
+Use Case 3 introduced centralized inventory management but did not explicitly separate read and write access. Without this separation, inventory could potentially be modified during search operations, leading to unintended system behavior.
